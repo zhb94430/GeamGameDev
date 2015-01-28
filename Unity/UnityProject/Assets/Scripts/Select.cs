@@ -4,6 +4,7 @@ using System.Collections;
 public class Select : MonoBehaviour {
 
 	public float selectSpeed;
+	public float mouseDepth;
 
 	// Use this for initialization
 	void Start () {
@@ -12,10 +13,16 @@ public class Select : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-
+		Vector3 mousePos = Input.mousePosition;
+//		Vector3 mousePos = Camera.current.WorldToScreenPoint(transform.position);
+		Vector3 actualPos = Camera.current.ScreenToWorldPoint (new Vector3 (mousePos.x, mousePos.y, mouseDepth+mousePos.y));
+		transform.position = actualPos;
 	}
 
 	void FixedUpdate () {
+		//Look into world to screen point
+
+
 		float mouseX = Input.GetAxis("Mouse X");
 		float mouseY = Input.GetAxis("Mouse Y");
 
